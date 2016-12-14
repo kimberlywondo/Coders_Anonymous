@@ -23,8 +23,14 @@ function authenticate(req, res, next) {
 
 // INDEX
 router.get('/', authenticate, function(req, res, next) {
-  var postEntries = global.currentUser.postEntries;
-  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
+//  var postEntries = global.currentUser.postEntries;
+//  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
+	PostEntry.find({})
+		.then(function(posts) {
+		res.render('postEntries/index', {
+			postEntries: posts
+		});
+	});
 });
 
 ////NEW
@@ -90,15 +96,15 @@ router.delete('/:id', authenticate, function(req, res, next) {
 });
 
 //show all post entries
-router.get('/', authenticate, function(req, res, next) {
-  // get all the todos and render the index view
-  PostEntry.find({}).sort(-createdAt)
-  .then(function(postEntries) {
-    res.render('postEntries/index', { AllPosts: postEntries } );
-  }, function(err) {
-    return next(err);
-  });
-});
+//router.get('/', authenticate, function(req, res, next) {
+//  // get all the todos and render the index view
+//  PostEntry.find({}).sort(-createdAt)
+//  .then(function(postEntries) {
+//    res.render('postEntries/index', { AllPosts: postEntries } );
+//  }, function(err) {
+//    return next(err);
+//  });
+//});
 
 
 module.exports = router;
