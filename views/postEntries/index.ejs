@@ -11,14 +11,15 @@
 
   <main>
     <div>
-      <h3>CONFESSIONS:</h3>
+      <h3>Your Confessions:</h3>
 	<% if (postEntries.length > 0) { %>
       <% postEntries.forEach(function(postEntry) { %>
         <h4>
           <form method="POST" action="/postEntries/<%= postEntry._id %>?_method=DELETE">
             <a href="/postEntries/<%= postEntry._id %>">
-              <%= postEntry.title %>
-            </a>
+            	<%= postEntry.title %>,
+				<%= postEntry.text %>
+			</a>
             <button type="submit" class="btn btn-xs btn-danger">Delete</button>
           </form>
         </h4>
