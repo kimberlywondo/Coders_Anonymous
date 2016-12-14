@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
+var mongoose = require('mongoose');
 
 var PostEntry = require('../models/postEntry');
 
