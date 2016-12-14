@@ -1,56 +1,76 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+var bcrypt   = require('bcrypt-nodejs');
 var PostEntry = require('./models/postEntry');
+var User = require('./models/user');
 
-mongoose.connect('mongodb://localhost/postEntries');
+mongoose.connect('mongodb://localhost/Coders_Anonymous');
 
-// our script will not exit until we have disconnected from the db.
 function quit() {
-  mongoose.disconnect();
-  console.log('\nQuitting!');
+    mongoose.disconnect();
+    console.log('\nQuitting!');
 }
 
-// a simple error handler
 function handleError(err) {
-  console.log('ERROR:', err);
-  quit();
-  return err;
+    console.error('ERROR:', err);
+    quit();
+    return err;
 }
 
-console.log('removing old todos...');
+function getUsers() {
+    var john = new User({
+        local: {
+            email: 'jd@me.co',
+            password: bcrypt.hashSync('test',  bcrypt.genSaltSync(8))
+        }
+    });
+    var kim = new User({
+        local: {
+            email: 'kw@me.co',
+            password: bcrypt.hashSync('test2', bcrypt.genSaltSync(8))
+        }
+    });
+    return [john, kim];
+}
+
+
 PostEntry.remove({})
-.then(function() {
-  console.log('old todos removed');
-  console.log('creating some new todos...');
-  var groceries  = new PostEntry({ title: 'groceries',    completed: false });
-  var feedTheCat = new PostEntry({ title: 'feed the cat', completed: true  });
-  return PostEntry.create([groceries, feedTheCat]);
-})
-.then(function(savedTodos) {
-  console.log('Just saved', savedTodos.length, 'todos.');
-  return PostEntry.find({});
-})
-.then(function(allTodos) {
-  console.log('Printing all todos:');
-  allTodos.forEach(function(todo) {
-    console.log(todo);
-  });
-  return PostEntry.findOne({title: 'groceries'});
-})
-.then(function(groceries) {
-  groceries.completed = true;
-  return groceries.save();
-})
-.then(function(groceries) {
-  console.log('updated groceries:', groceries);
-  return groceries.remove();
-})
-.then(function(deleted) {
-  return PostEntry.find({});
-})
-.then(function(allTodos) {
-  console.log('Printing all todos:');
-  allTodos.forEach(function(todo) {
-    console.log(todo);
-  });
-  quit();
-});
+    .then(function() {
+        return User.remove({});
+    })
+    .then(function() {
+        return User.create(getUsers());
+    })
+    .then(function(users) {
+        console.log('Saved users:', users);
+        var firstThing = new PostEntry({
+            user: users[0],
+            title: 'this is a title',
+            text: 'this is text',
+        });
+		var secondThing = new PostEntry({
+            user: users[1],
+            title: 'this is a second title',
+            text: 'this is second text',
+        });
+        return PostEntry.create([firstThing, secondThing]);
+    })
+    .then(function(savedPosts) {
+        console.log('Just saved', savedPosts.length, 'posts.');
+        return PostEntry.find({});
+    })
+    .then(function(allPosts) {
+        console.log('Printing all posts:');
+        allPosts.forEach(function(post) {
+            console.log(post.title);
+        });
+        return PostEntry.find({});
+    })
+    .then(function(allPosts) {
+        console.log('Printing all posts:');
+        allPosts.forEach(function(post) {
+            console.log(post);
+        });
+        quit();
+    })
+    .catch(handleError);
