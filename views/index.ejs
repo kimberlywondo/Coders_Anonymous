@@ -15,6 +15,17 @@
 			<h1><%= title %></h1>
         		<p>Welcome to <%= title %></p>
 
+
+		<% if (!currentUser) { %>
+    	<li><a>Welcome! Sign up to Start Sharing!</a></li>
+    	<% } else { %>
+			<li><a>Confessions Board</a></li>
+
+		<% } %>
+
+
+
+
 		</main>
 
         <footer>
