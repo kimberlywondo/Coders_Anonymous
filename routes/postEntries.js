@@ -89,5 +89,20 @@ router.delete('/:id', authenticate, function(req, res, next) {
   });
 });
 
+//show all post entries
+router.get('/', authenticate, function(req, res, next) {
+  // get all the todos and render the index view
+  PostEntry.find({}).sort(-createdAt)
+  .then(function(postEntries) {
+    res.render('postEntries/index', { AllPosts: postEntries } );
+  }, function(err) {
+    return next(err);
+  });
+});
+
+
+module.exports = router;
+
+
 
 module.exports = router;
