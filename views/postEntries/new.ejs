@@ -9,12 +9,12 @@
     <% include ../partials/header %>
   </header>
 
-  <main>
+  <main id='newPostForm'>
     <h3>Would you like to share?</h3>
     <form class="postEntry-form" action="/postEntries" method="post">
       <% include ./_form %>
-      <a href="/postEntries" class="btn btn-primary">Back</a>
-      <button type="submit" class="btn btn-success">Share</button>
+      <a href="/postEntries" class="btn btn-default">Back</a>
+      <button type="submit" class="btn btn-info">Share</button>
     </form>
   </main>
 

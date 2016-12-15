@@ -9,15 +9,20 @@
     <% include partials/header %>
   </header>
 
-  <main>
-    <div>
-      <h3>User Confessions:</h3>
-      <% postEntries.forEach(function(postEntry) { %>
-        <h4>
-              <%= postEntry.title %>
-        </h4>
-      <% }) %>
-    </div>
+  <main id='memberBoardMain'>
+      	<h3></h3>
+	  	<div class='memberBoardPosts'>
+		  <% postEntries.forEach(function(postEntry) { %>
+			<p id='memberPosts'>
+				  <%= postEntry.text %>
+			</p>
+			<div class="btn-group  btn-group-xs">
+				<button type="button" class="btn btn-default" href='#'>You're not alone!</button>
+				<button type="button" class="btn btn-default" href='#'>Leave a comment</button>
+				<button type="button" class="btn btn-default" href='#'>Become a sponsor!</button>
+			</div>
+		</div>
+		  <% }) %>
   </main>
 
   <footer>
@@ -25,3 +30,5 @@
   </footer>
 </body>
 </html>
+
+ 

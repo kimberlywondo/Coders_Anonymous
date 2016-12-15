@@ -9,6 +9,7 @@
 	<header>
 		<% include partials/header %>
 	</header>
+	
 	<main>
 		<h1><%= title %></h1>
 		<% if (!currentUser) { %>
@@ -16,15 +17,14 @@
 			<p><span><a href='/signup'>Sign up</a></span> or <span><a href='/login'>Login</a> to Start Sharing. </p>
 		<% } else { %>
 		<div class='board'>
-			<h2>Latest Confessions:</h2>
+			<h2>Join a group. Share your stories. Get Help.</h2>
 
 		<% } %>
-
 	</main>
+		
 	<footer>
 		<% include partials/footer %>
 	</footer>
 </body>
 
 </html>
-
