@@ -20,11 +20,23 @@ function authenticate(req, res, next) {
   }
 }
 
-// INDEX
+// INDEX -- GET ALL CONFESSIONS
+//*router.get('/', authenticate, function(req, res, next) {
+//
+//	//  var postEntries = global.currentUser.postEntries;
+////  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
+//
+//	*PostEntry.find({})
+//		.then(function(posts) {
+//		res.render('postEntries/index', {
+//			postEntries: posts
+//		});
+//	});
+//});
+
+//INDEX -- GET ALL
 router.get('/', authenticate, function(req, res, next) {
-//  var postEntries = global.currentUser.postEntries;
-//  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
-	PostEntry.find({})
+	PostEntry.find({ user: req.user })
 		.then(function(posts) {
 		res.render('postEntries/index', {
 			postEntries: posts
@@ -66,20 +78,21 @@ router.post('/', authenticate, function(req, res, next) {
 });
 
 
-//// UPDATE
+//// UPDATE  ***** USERS CANNOT UPDATE POSTS
 //router.put('/:id', authenticate, function(req, res, next) {
-//  var postEntry = currentUser.postEntries.id(req.params.id);
-//  if (!postEntry) return next(makeError(res, 'Document not found', 404));
-//  else {
+//  Postentry.findById(req.params.id)
+//  .then(function(postEntry) {
+//    if (!postEntry) return next(makeError(res, 'Document not found', 404));
 //    postEntry.title = req.body.title;
 //    postEntry.completed = req.body.completed ? true : false;
-//    currentUser.save()
-//    .then(function(saved) {
-//      res.redirect('/postEntries');
-//    }, function(err) {
-//      return next(err);
-//    });
-//  }
+//    postEntry.lastUpdatedAt = req.body.lastUpdatedAt;
+//    return postEntry.save();
+//  })
+//  .then(function(saved) {
+//    res.redirect('/postEntries');
+//  }, function(err) {
+//    return next(err);
+//  });
 //});
 
 
@@ -92,18 +105,6 @@ router.delete('/:id', authenticate, function(req, res, next) {
     return next(err);
   });
 });
-
-
-//show all post entries
-//router.get('/', authenticate, function(req, res, next) {
-//  // get all the todos and render the index view
-//  PostEntry.find({}).sort(-createdAt)
-//  .then(function(postEntries) {
-//    res.render('postEntries/index', { AllPosts: postEntries } );
-//  }, function(err) {
-//    return next(err);
-//  });
-//});
 
 
 module.exports = router;
