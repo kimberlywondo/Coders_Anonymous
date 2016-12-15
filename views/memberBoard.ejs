@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+</head>
+
+<body class="container-fluid">
+  <header>
+    <% include partials/header %>
+  </header>
+
+  <main id='memberBoardMain'>
+      	<h3></h3>
+	  	<div class='memberBoardPosts'>
+		  <% postEntries.forEach(function(postEntry) { %>
+			<p id='memberPosts'>
+				  <%= postEntry.text %>
+			</p>
+			<div class="btn-group  btn-group-xs">
+				<button type="button" class="btn btn-default" href='#'>You're not alone!</button>
+				<button type="button" class="btn btn-default" href='#'>Leave a comment</button>
+				<button type="button" class="btn btn-default" href='#'>Become a sponsor!</button>
+			</div>
+		</div>
+		  <% }) %>
+  </main>
+
+  <footer>
+    <% include partials/footer %>
+  </footer>
+</body>
+</html>
+
+ 

@@ -10,7 +10,7 @@
   </header>
 
   <main>
-    <div>
+    <div id='yourConfessions'>
       <h3>Your Confessions:</h3>
 	<% if (postEntries.length > 0) { %>
       <% postEntries.forEach(function(postEntry) { %>
@@ -20,16 +20,16 @@
             	<%= postEntry.title %>,
 				<%= postEntry.text %>
 			</a>
-            <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+            <button type="submit" class="btn btn-xs btn-info">Delete</button>
           </form>
         </h4>
       <% }); %>
 	<% } else { %>
-		<h4> Go ahead, share something! Admitting it is the first step...</h4>
+		<h4> Go ahead, share something! Admitting you have a problem is the first step...</h4>
 	<% } %>
-<!--If there are no existing entries -> create one!-->
+<a href="/postEntries/new" class="btn btn-default">Share Something New</a>
     </div>
-    <a href="/postEntries/new" class="btn btn-primary">New</a>
+
   </main>
 
   <footer>
