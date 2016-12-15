@@ -39,30 +39,30 @@ router.get('/new', authenticate, function(req, res, next) {
     title: '',
     text: '',
   };
-  res.render('postEntries/new', { postEntry: postEntry, message: req.flash() });
+  res.render('postEntries/new', { postEntry: postEntry });
 });
 //
+
 //// SHOW
 router.get('/:id', authenticate, function(req, res, next) {
-  var postEntry = currentUser.postEntries.id(req.params.id);
-  if (!postEntry) return next(makeError(res, 'Document not found', 404));
-  res.render('postEntries/show', { postEntry: postEntry, message: req.flash() } );
+  PostEntry.findById(req.params.id)
+  .then(function(postEntry) {
+    if (!postEntry) return next(makeError(res, 'Document not found', 404));
+    res.render('postEntries/show', { postEntry: postEntry });
+  }, function(err) {
+    return next(err);
+  });
 });
 //
 //// CREATE
 router.post('/', authenticate, function(req, res, next) {
-  var postEntry = {
+  var postEntry = new PostEntry( {
+	user: req.user,
     title: req.body.title,
-	text: req.body.text,
-  };
-//
-currentUser.postEntries.push(postEntry);
-  currentUser.save()
-  .then(function() {
-    res.redirect('/postEntries');
-  }, function(err) {
-    return next(err);
+	text: req.body.text
   });
+	postEntry.save();
+	res.redirect('/postEntries');//mongoose method to save an instance of a postEntry object
 });
 //
 //// UPDATE
@@ -83,17 +83,14 @@ currentUser.postEntries.push(postEntry);
 //
 //// DELETE
 router.delete('/:id', authenticate, function(req, res, next) {
-  var postEntry = currentUser.postEntries.id(req.params.id);
-  if (!postEntry) return next(makeError(res, 'Document not found', 404));
-  var index = currentUser.postEntries.indexOf(postEntry);
-  currentUser.postEntries.splice(index, 1);
-  currentUser.save()
-  .then(function(saved) {
+  PostEntry.findByIdAndRemove(req.params.id)
+  .then(function() {
     res.redirect('/postEntries');
   }, function(err) {
     return next(err);
   });
 });
+
 
 //show all post entries
 //router.get('/', authenticate, function(req, res, next) {
@@ -105,10 +102,6 @@ router.delete('/:id', authenticate, function(req, res, next) {
 //    return next(err);
 //  });
 //});
-
-
-module.exports = router;
-
 
 
 module.exports = router;
