@@ -34,6 +34,18 @@ function authenticate(req, res, next) {
 //	});
 //});
 
+// MEMBER BOARD -- GET ALL CONFESSIONS
+//router.get('/', authenticate, function(req, res, next) {
+////	//  var postEntries = global.currentUser.postEntries;
+////  //  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
+//	PostEntry.find({})
+//		.then(function(posts) {
+//		res.render('memberBoard.ejs', {
+//			postEntries: posts
+//		});
+//	});
+//});
+
 //INDEX -- GET ALL
 router.get('/', authenticate, function(req, res, next) {
 	PostEntry.find({ user: req.user })
