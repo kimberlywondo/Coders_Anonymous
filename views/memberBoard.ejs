@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include partials/head %>
+</head>
+
+<body class="container-fluid">
+  <header>
+    <% include partials/header %>
+  </header>
+
+  <main>
+    <div>
+      <h3>User Confessions:</h3>
+      <% postEntries.forEach(function(postEntry) { %>
+        <h4>
+              <%= postEntry.title %>
+        </h4>
+      <% }) %>
+    </div>
+  </main>
+
+  <footer>
+    <% include partials/footer %>
+  </footer>
+</body>
+</html>
