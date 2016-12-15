@@ -13,7 +13,6 @@ function makeError(res, message, status) {
 //USER AUTHENTICATION
 function authenticate(req, res, next) {
   if(!req.isAuthenticated()) {
-    req.flash('error', 'Please signup or login.');
     res.redirect('/');
   }
   else {
@@ -41,7 +40,7 @@ router.get('/new', authenticate, function(req, res, next) {
   };
   res.render('postEntries/new', { postEntry: postEntry });
 });
-//
+
 
 //// SHOW
 router.get('/:id', authenticate, function(req, res, next) {
@@ -53,7 +52,8 @@ router.get('/:id', authenticate, function(req, res, next) {
     return next(err);
   });
 });
-//
+
+
 //// CREATE
 router.post('/', authenticate, function(req, res, next) {
   var postEntry = new PostEntry( {
@@ -64,7 +64,8 @@ router.post('/', authenticate, function(req, res, next) {
 	postEntry.save();
 	res.redirect('/postEntries');//mongoose method to save an instance of a postEntry object
 });
-//
+
+
 //// UPDATE
 //router.put('/:id', authenticate, function(req, res, next) {
 //  var postEntry = currentUser.postEntries.id(req.params.id);
@@ -80,7 +81,8 @@ router.post('/', authenticate, function(req, res, next) {
 //    });
 //  }
 //});
-//
+
+
 //// DELETE
 router.delete('/:id', authenticate, function(req, res, next) {
   PostEntry.findByIdAndRemove(req.params.id)

@@ -12,10 +12,14 @@
 	<main>
 		<h1><%= title %></h1>
 		<% if (!currentUser) { %>
-			<p><a href='/signup'>Welcome! Sign up to Start Sharing </a></p>
+			<p>Welcome to CA!</p>
+			<p><span><a href='/signup'>Sign up</a></span> or <span><a href='/login'>Login</a> to Start Sharing. </p>
 		<% } else { %>
+		<div class='board'>
 			<h2>Latest Confessions:</h2>
+
 		<% } %>
+
 	</main>
 	<footer>
 		<% include partials/footer %>

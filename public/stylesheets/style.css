@@ -4,5 +4,70 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  	color: #00B7FF;
+	text-align: center;
 }
+
+p {
+	text-align: center;
+}
+
+.navbar-default {
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
+}
+/* title */
+.navbar-default .navbar-brand {
+    color: #777;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: #5E5E5E;
+}
+.footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #F8F8F8;
+	text-align: center;
+	border-radius: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+	border: 1px solid #E7E7E7;
+	color: #777;
+}
+
+#firstTimeSignIn {
+	text-align: right;
+	font-size: 10px;
+	margin-right: 12px;
+	list-style-type: none;
+}
+
+#loginFormContainer {
+	text-align: center;
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+#signUpContainer {
+	text-align: center;
+	margin-left: 300px;
+	margin-right: 300px;
+}
+
+#yourConfessions {
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+.board {
+	text-align: center;
+}
+
+
