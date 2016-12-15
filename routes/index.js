@@ -5,10 +5,24 @@ var mongoose = require('mongoose');
 
 var PostEntry = require('../models/postEntry');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Coders Anonymous'});
 });
+
+// MEMBER BOARD -- GET ALL CONFESSIONS
+router.get('/memberBoard', function(req, res, next) {
+//	//  var postEntries = global.currentUser.postEntries;
+////  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
+	PostEntry.find({})
+		.then(function(posts) {
+		res.render('memberBoard.ejs', {
+			postEntries: posts
+		});
+	});
+});
+
 
 // GET /signup
 router.get('/signup', function(req, res, next) {
