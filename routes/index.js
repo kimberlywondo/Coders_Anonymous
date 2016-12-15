@@ -5,6 +5,15 @@ var mongoose = require('mongoose');
 
 var PostEntry = require('../models/postEntry');
 
+//USER AUTHENTICATION
+function authenticate(req, res, next) {
+  if(!req.isAuthenticated()) {
+    res.redirect('/');
+  }
+  else {
+    next();
+  }
+}
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,9 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 // MEMBER BOARD -- GET ALL CONFESSIONS
-router.get('/memberBoard', function(req, res, next) {
-//	//  var postEntries = global.currentUser.postEntries;
-////  res.render('postEntries/index', { postEntries: postEntries, message: req.flash() });
+router.get('/memberBoard', authenticate, function(req, res, next) {
 	PostEntry.find({})
 		.then(function(posts) {
 		res.render('memberBoard.ejs', {
