@@ -4,6 +4,7 @@ var bcrypt   = require('bcrypt-nodejs');
 var PostEntry = require('./models/postEntry');
 var User = require('./models/user');
 
+mongoose.connect('mongodb://localhost/Coders_Anonymous');
 // Connect to database
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);

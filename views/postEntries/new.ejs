@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <% include ../partials/head %>
+	<% include ../partials/head %>
 </head>
 
 <body class="container-fluid">
-  <header>
-    <% include ../partials/header %>
-  </header>
+	<header>
+		<% include ../partials/header %>
+	</header>
 
-  <main id='newPostForm'>
-    <h3>Would you like to share?</h3>
-    <form class="postEntry-form" action="/postEntries" method="post">
-      <% include ./_form %>
-      <a href="/postEntries" class="btn btn-default">Back</a>
-      <button type="submit" class="btn btn-info">Share</button>
-    </form>
-  </main>
+	<main id='newPostForm'>
+		<h3>Would you like to share?</h3>
+		<form class="postEntry-form" action="/postEntries" method="post">
+			<% include ./_form %>
+				<a href="/postEntries" class="btn btn-default">Back</a>
+				<button type="submit" class="btn btn-info">Share</button>
+		</form>
+	</main>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
 </body>
+
 </html>

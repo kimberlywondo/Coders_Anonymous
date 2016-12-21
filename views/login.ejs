@@ -1,33 +1,35 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <% include partials/head %>
-  </head>
 
-  <body class="container-fluid">
-    <header>
-      <% include partials/header %>
-    </header>
+<head>
+	<% include partials/head %>
+</head>
 
-    <main>
-      <div id="loginFormContainer">
-        <h2>Login</h2>
-          <form method="post" action="/login">
-            <div class="form-group">
-              <input class="form-control" type="text" name="email" id="email" placeholder="email">
-            </div>
+<body class="container-fluid">
+	<header>
+		<% include partials/header %>
+	</header>
 
-            <div class="form-group">
-              <input class="form-control" type="password" name="password" id="password" placeholder="password">
-            </div>
+	<main>
+		<div id="loginFormContainer">
+			<h2>Login</h2>
+			<form method="post" action="/login">
+				<div class="form-group">
+					<input class="form-control" type="text" name="email" id="email" placeholder="email">
+				</div>
 
-            <input class="btn btn-block" type="submit">
-          </form>
-      </div>
-    </main>
+				<div class="form-group">
+					<input class="form-control" type="password" name="password" id="password" placeholder="password">
+				</div>
 
-    <footer>
-      <% include partials/footer %>
-    </footer>
-  </body>
+				<input class="btn btn-block" type="submit">
+			</form>
+		</div>
+	</main>
+
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+
 </html>

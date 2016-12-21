@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <% include ../partials/head %>
+	<% include ../partials/head %>
 </head>
 
 <body class="container-fluid">
-  <header>
-    <% include ../partials/header %>
-  </header>
+	<header>
+		<% include ../partials/header %>
+	</header>
 
-  <main>
-    <div id='yourConfessions'>
-      <h3>Your Confessions:</h3>
-	<% if (postEntries.length > 0) { %>
-      <% postEntries.forEach(function(postEntry) { %>
-        <h4>
+	<main>
+		<div id='yourConfessions'>
+			<h3>Your Confessions:</h3>
+			<% if (postEntries.length > 0) { %>
+				<% postEntries.forEach(function(postEntry) { %>
+					<h4>
           <form method="POST" action="/postEntries/<%= postEntry._id %>?_method=DELETE">
             <a href="/postEntries/<%= postEntry._id %>">
             	<%= postEntry.title %>,
@@ -23,17 +24,18 @@
             <button type="submit" class="btn btn-xs btn-info">Delete</button>
           </form>
         </h4>
-      <% }); %>
-	<% } else { %>
-		<h4> Go ahead, share something! Admitting you have a problem is the first step...</h4>
-	<% } %>
-<a href="/postEntries/new" class="btn btn-default">Share Something New</a>
-    </div>
+					<% }); %>
+						<% } else { %>
+							<h4> Go ahead, share something! Admitting you have a problem is the first step...</h4>
+							<% } %>
+								<a href="/postEntries/new" class="btn btn-default">Share Something New</a>
+		</div>
 
-  </main>
+	</main>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+	<footer>
+		<% include ../partials/footer %>
+	</footer>
 </body>
+
 </html>

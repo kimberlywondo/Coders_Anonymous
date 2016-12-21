@@ -1,10 +1,10 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  	color: #00B7FF;
+	color: #00B7FF;
 	text-align: center;
 }
 
@@ -13,16 +13,20 @@ p {
 }
 
 .navbar-default {
-    background-color: #F8F8F8;
-    border-color: #E7E7E7;
+	background-color: #F8F8F8;
+	border-color: #E7E7E7;
 }
+
+
 /* title */
+
 .navbar-default .navbar-brand {
-    color: #777;
+	color: #777;
 }
+
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-    color: #5E5E5E;
+	color: #5E5E5E;
 }
 
 #firstTimeSignIn {
@@ -64,24 +68,21 @@ p {
 	border-radius: 5px;
 }
 
-#memberBoardPosts {
-	
-}
+#memberBoardPosts {}
 
 #memberPosts {
 	display: block;
 	line-height: 25px;
 	height: 80px;
-    margin: 20px 150px -10px 150px;
-    padding: 12px 5px 5px 5px;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 2px;
+	margin: 20px 150px -10px 150px;
+	padding: 12px 5px 5px 5px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 2px;
 	border: 1px solid #E7E7E7;
 	color: #777;
 	font-size: 18px;
 }
-
 
 .footer {
 	position: fixed;
@@ -105,5 +106,3 @@ h1 {
 .board {
 	text-align: center;
 }
-
-
